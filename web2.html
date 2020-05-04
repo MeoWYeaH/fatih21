@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+	<title>Tugas Web 2</title>
+	<link rel="stylesheet" href="Web2.css">
+</head>
+<body>
+	<h1>Javascript pada HTML</h1>
+	<p>M. Fatih A'isy | 2210101013 | D4 Teknik Komputer</p>
+	<div class="content">
+		<div class="ctitle">
+			1. Validasi Password
+		</div>
+		<div class="result">
+			<form id="Validation">
+				<div class="forinp">
+					<input type="password" class="inputpass" placeholder="Enter Password">
+				</div>
+                <div class="forinp">
+                	<input type="password" class="inputpass" placeholder="Re-Enter Password">
+                </div>
+				<div class="button">
+					<button >Submit</button>
+				</div>
+			</form>
+			<div id="output1" class="output"></div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="ctitle">
+			2. Hidden Button
+			</div>
+			<div class="result">
+				<div class="button">
+					<button onclick="show();" >Login</button>
+					<div id="contain">
+						<div class="forinp">
+							<input type="password" placeholder="Email">
+						</div>
+						<div class="forinp">
+							<input type="password" placeholder="Password">
+						</div>
+						<div class="button">
+							<button>Submit</button>
+							<button onclick="close_login();">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		<div class="content">
+			<div class="ctitle">
+				3. Kalkulator
+			</div>
+			<div class="result">
+				<form>
+					<div class="forinp">
+						<input type="number" id="inputnum1" placeholder="0">
+					</div>					
+					<div class="forinp">
+						<select id="operator">
+							<option value="+">+</option>
+							<option value="-">-</option>
+							<option value="*">*</option>
+							<option value="/">/</option>
+						</select>
+					</div>					
+					<div class="forinp"><input type="number" id="inputnum2" placeholder="0"></div>					
+					<div class="button">
+						<button type="button" onclick="hitung();"> Sum </button>
+					</div>
+					<div id="output2"  class="outputL"></div>
+				</form>
+			</div>			
+		</div>		
+		<div class="content">
+			<div class="ctitle">
+				4. Data Kecamatan 
+			</div>
+			<div class="result">
+				<form>
+					<div class="forinp"><select id="inputkec" onchange="cari();"></select></div>
+					<div class="forinp"><select id="inputkel"></select></div>
+				</form>
+			</div>
+		</div>
+		<div class="content">
+			<div class="ctitle">
+				5. Sort
+			</div>
+			<div class="result">
+				<div class="forinp">
+					<input type="number" id="input_angka" placeholder="0">
+				</div>
+				<div class="button">
+					<button onclick="pushData();">Add</button>
+				</div>
+				<div class="button">
+					<button onclick="Ascend();">Ascend</button>
+				</div>
+				<div class="button">
+					<button onclick="Descend();">Descend</button>
+				</div>
+				<div id="number" class="output"></div>
+				<div id="ascenout" class="output"></div>
+				<div id="descenout" class="output"></div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="ctitle">
+				6. Format Tanggal
+			</div>
+			<div class="result">
+				<form id="dateform">
+					<div class="forinp">
+						<input type="date" id="dateinput">
+					</div>				 
+				</form>
+				<div class="button"><Button onclick="changefor();" >Change Format</div>
+				<div id="formoutput" class="output"></div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<script>
+		var form = document.getElementsByTagName("form")
+		var input = document.getElementsByClassName("inputpass")
+		form[0].onsubmit = function(e){
+			e.preventDefault()
+			if(input[0].value == input[1].value){
+				document.getElementById("output1").innerHTML = "Password is Match"
+			}else{
+				document.getElementById("output1").innerHTML = "Password isn't match"
+			}
+		}
+		function show()
+		{
+			document.getElementById('contain').style.display="inline";
+		}
+		function close_login()
+		{
+			document.getElementById('contain').style.display="none";
+		}
+		function hitung()
+		{
+			var num1 = document.getElementById("inputnum1").value;
+			var num2 = document.getElementById("inputnum2").value;
+			var operator = document.getElementById("operator").value;
+			var output = document.getElementById("output2");
+			var fn = parseInt(num1);
+			var sn = parseInt(num2);
+			var result = 0;
+			switch(operator)
+			{
+				case "+" :
+					result = fn + sn;
+				break;
+				case "-" :
+					result = fn - sn;
+	        	break;
+	       		case "*" : 
+	          	  result = fn * sn;
+	        	break;
+	       		case "/" : 
+	          	  result = fn / sn;
+	        	break;
+	    	}
+	    	output.innerHTML = "= " + result;
+	    }
+	    var dataKecamatan = ["Pilih Kecamatan","Wiyung", "Karang Pilang"];
+	    var dataKelurahan = [["Pilih Kelurahan"],["Babatan", "Balasklumprik", "Jajar Tunggal","Wiyung"],["Karang Pilang", "Kebraon", "Kedurus","Warugunung"]];
+	    var inputKecamatan = document.getElementById("inputkec");
+	    var listKecamatan = "";
+	    for(let i = 0; i < dataKecamatan.length; i++){
+	    	listKecamatan += "<option>" + dataKecamatan[i] + "</option>";
+	    }
+	    inputKecamatan.innerHTML = listKecamatan;
+	    function cari() {
+	    	var selectedData = dataKelurahan[dataKecamatan.indexOf(inputkec.value)];
+	    	var listKelurahan = "";
+	    	for(let i = 0; i < selectedData.length; i++){
+	    		listKelurahan += "<option>" + selectedData[i] + "</option>";
+	    	}
+	    	inputkel.innerHTML = listKelurahan;
+	    }
+	    var angka_arr = [];
+	    function pushData()
+	    {
+	    	var input_angka = document.getElementById('input_angka').value;
+	    	angka_arr.push(input_angka);
+	    	var out_angka = "Queue : ";
+	    	for(i = 0; i < angka_arr.length; i++)
+	    	{
+            	out_angka = out_angka + angka_arr[i] + ",";
+      		 }
+      		document.getElementById('number').innerHTML = out_angka;
+      	}
+      	function Ascend() {
+      		angka_arr.sort(function(a, b){return a-b});
+      		document.getElementById("ascenout").innerHTML = "Sort by Ascending : "+angka_arr;
+      	}
+      	function Descend() {
+      		angka_arr.sort(function(a, b){return b-a});
+      		document.getElementById("descenout").innerHTML = "Sort by Descending : "+angka_arr;
+      	}
+      	var form = document.getElementById("dateform")
+      	var dateInput = document.getElementById("dateinput")
+      	var dataOutput = "";
+      	var monthData = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+      	function changefor()
+      	{
+      		var date = new Date(dateInput.value)
+      		dataOutput += "Format 1 : "+ date.getDate() + " / " + (date.getMonth() + 1) + " / " + date.getFullYear() + "<br>";
+      		dataOutput += "Format 2 : "+ date.getDate() + " " + monthData[date.getMonth()] + " " + date.getFullYear() + "<br>";
+      		document.getElementById("formoutput").innerHTML = dataOutput
+      	}
+	</script>
+</body>

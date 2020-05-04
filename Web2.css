@@ -1,0 +1,38 @@
+body{
+	background-color:#000000;
+}
+h1{
+	color:#FFFFFF;
+	font-family:"Times New Roman";
+	font-size: 60px;
+}
+p{
+	color:#FFFFFF;
+	font-family:"Times New Roman";
+	font-size: 15px;
+}
+.content
+{
+	padding-top: 30px;
+	border: 5px solid grey;
+	background-color: #778899;
+	border-radius: 15px;
+}
+.ctitle{
+	color:#00FFFF;
+	font-family:"Times New Roman";
+	font-size: 20px;
+}
+.forinp{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+}
+button{
+	background-color:#696969;
+	border-radius: 10px;
+}
+.button{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
